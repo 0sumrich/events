@@ -1,0 +1,20 @@
+CREATE TABLE events_att (
+  event_id INTEGER PRIMARY KEY,
+  event_date TEXT NOT NULL,
+  library TEXT NOT NULL,
+  adults INTEGER NOT NULL,
+  children TEXT NOT NULL,
+  category TEXT NOT NULL,
+  max_no INTEGER,
+  notes TEXT,
+  funded_by TEXT,
+  delivered_by INTEGER,
+  project TEXT,
+  title TEXT,
+  charge REAL, 
+  staff TEXT,
+  year_of_learning INTEGER,
+  arts_council_funded TEXT,
+  theme TEXT,
+  check_id INTEGER
+);

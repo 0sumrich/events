@@ -1,0 +1,6 @@
+.env
+yarn.lock
+node_modules
+.next
+scripts/env
+scripts/__pycache__
