@@ -40,17 +40,15 @@ const Table = ({ data }) => {
     tbody.scrollTop = tbody.scrollHeight;
   });
   return (
-    <div className="table-wrapper">
+    <React.Fragment>
       <table className="table highlight" id="table">
         <TableHead data={Object.keys(data[0])} />
         <tbody>
           <Rows data={data} />
         </tbody>
       </table>
-    </div>
+    </React.Fragment>
   );
 };
 
 export default Table;
-
-// <Rows data={data} />
