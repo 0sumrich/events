@@ -14,7 +14,9 @@ const Home = ({ data }) => {
 
   const SideNav = () => (
     <Col classes="s3">
-      <p>hi</p>
+      <ul>
+        <p>hi</p>
+      </ul>
     </Col>
   );
 
