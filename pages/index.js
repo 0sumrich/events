@@ -4,6 +4,7 @@ import Table from "../components/table";
 import Years from "../components/years";
 import Row from "../components/row";
 import Col from "../components/col";
+import Toolbar from "../components/toolbar";
 
 const Home = ({ data }) => {
   const [year, setYear] = useState(2019);
@@ -14,9 +15,7 @@ const Home = ({ data }) => {
 
   const SideNav = () => (
     <Col classes="s3">
-      <ul>
-        <p>hi</p>
-      </ul>
+      <Toolbar />
     </Col>
   );
 
