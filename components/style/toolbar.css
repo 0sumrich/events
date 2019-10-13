@@ -1,7 +1,8 @@
-/*.toolbar {
-	list-style-type: none;
+.toolbar {
+	margin-top: 0;
+}
+
+.toolbar li i {
 	text-align: center;
-	display: block;
-	width: 100%;
-	margin: auto;
-}*/
+	padding: 0.5em 1em;
+}

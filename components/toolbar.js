@@ -1,24 +1,32 @@
-import React from "react";
+import React, { Fragment } from "react";
 import css from "./style/toolbar.css";
 
 const Icon = ({ children }) => (
 	<i className="small material-icons">{children}</i>
 );
-const AddBtn = () => <Icon>add_circle</Icon>;
-const SaveBtn = () => <Icon>done</Icon>;
-const FolderOpen = () => <Icon>folder_open</Icon>;
+
+const ToolBarBtn = ({ icon, text }) => (
+	<Fragment>
+		<Icon>{icon}</Icon>
+		<span className="toolbar-text">{text}</span>
+	</Fragment>
+);
+
+const AddBtn = () => <ToolBarBtn icon="add_circle" text="Add event" />;
+const SaveBtn = () => <ToolBarBtn icon="done" text="Save changes" />;
+const Reports = () => <ToolBarBtn icon="folder_open" text="View reports" />;
 const Divider = () => <li className="divider"></li>;
 
-const btnArray = [<AddBtn />, <SaveBtn />, <FolderOpen />];
+const btnArray = [<AddBtn />, <SaveBtn />, <Reports />];
 
 export default () => (
-	<ul>
+	<ul className="toolbar">
 		{btnArray.map((btn, i) => (
-			<div>
-				<li key={`btn ${i}`} className="center-align">
+			<div key={`div + ${i}`}>
+				<li key={`btn ${i}`} className="valign-wrapper">
 					{btn}
 				</li>
-				<Divider key={`div ${i}`} />
+				<Divider key={`divider ${i}`} />
 			</div>
 		))}
 	</ul>
