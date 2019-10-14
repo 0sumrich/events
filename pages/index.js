@@ -7,15 +7,27 @@ import Col from "../components/col";
 import Toolbar from "../components/toolbar";
 
 const Home = ({ data }) => {
+  const [tableData, setTableData] = useState(data);
   const [year, setYear] = useState(2019);
   const clickYearHandle = e => {
     e.preventDefault();
     setYear(+e.target.innerHTML);
   };
 
+  const handleAddClick = () => {
+    console.log('add click')
+    // const o = tableData[year][tableData[year].length - 1];
+    // const keys = Object.keys(o);
+    // for (let i = 0; i < keys.length; i++) {
+    //   o[key] = "";
+    // }
+    // const newData = tableData[year].push(o);
+    // setTableData(newData);
+  };
+
   const SideNav = () => (
     <Col classes="s3">
-      <Toolbar />
+      <Toolbar handleAddClick={handleAddClick}/>
     </Col>
   );
 
@@ -26,7 +38,7 @@ const Home = ({ data }) => {
         active={year}
         handleClick={clickYearHandle}
       />
-      <Table data={data[year]} />
+      <Table data={tableData[year]} />
     </Col>
   );
 
