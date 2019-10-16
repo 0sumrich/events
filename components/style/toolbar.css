@@ -7,7 +7,7 @@
 }
 
 .toolbar li:hover {
-	background: grey;
+	background-color: rgba(242,242,242,0.5);
 }
 
 .toolbar li i {
