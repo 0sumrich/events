@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import css from "./style/table.css";
+//import css from "./style/table.css";
 const Rows = ({ data }) => {
   return data.map((o, i) => <TableRow key={o.id} id={o.id} data={o} />);
 };

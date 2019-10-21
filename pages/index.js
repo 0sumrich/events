@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
 import fetch from "isomorphic-unfetch";
-import Table from "../components/table";
+import Table from "../components/newTable";
 import Years from "../components/years";
 import Row from "../components/row";
 import Col from "../components/col";
@@ -15,38 +16,51 @@ const Home = ({ data }) => {
   };
 
   const handleAddClick = () => {
-    console.log('add click')
-    // const o = tableData[year][tableData[year].length - 1];
-    // const keys = Object.keys(o);
-    // for (let i = 0; i < keys.length; i++) {
-    //   o[key] = "";
-    // }
-    // const newData = tableData[year].push(o);
-    // setTableData(newData);
+    console.log("add click");
+    const o = tableData[year][tableData[year].length - 1];
+    const keys = Object.keys(o);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      o[key] = "";
+    }
+    tableData[year].push(o);
+    setTableData(tableData[year]);
   };
 
+  // const SideNav = () => (
+  //   <Col classes="s3">
+  //     <Toolbar handleAddClick={handleAddClick} />
+  //   </Col>
+  // );
+
+  // const MainPanel = () => (
+  //   <Col classes="s9">
+  //     <Years
+  //       years={Object.keys(tableData)}
+  //       active={year}
+  //       handleClick={clickYearHandle}
+  //     />
+  //     <Table data={tableData[year]} />
+  //   </Col>
+  // );
+
   const SideNav = () => (
-    <Col classes="s3">
-      <Toolbar handleAddClick={handleAddClick}/>
-    </Col>
+    <Grid item sm={3}>
+      <Toolbar />
+    </Grid>
   );
 
   const MainPanel = () => (
-    <Col classes="s9">
-      <Years
-        years={Object.keys(data)}
-        active={year}
-        handleClick={clickYearHandle}
-      />
-      <Table data={tableData[year]} />
-    </Col>
+    <Grid item sm={9}>
+      <Table data={data[year]}/>
+    </Grid>
   );
 
   return (
-    <Row>
+    <Grid container>
       <SideNav />
       <MainPanel />
-    </Row>
+    </Grid>
   );
 };
 

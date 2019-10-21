@@ -5,3 +5,4 @@ node_modules
 scripts/env
 scripts/__pycache__
 bundles
+yarn-error.log

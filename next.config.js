@@ -2,7 +2,7 @@ require("dotenv").config();
 const withCSS = require("@zeit/next-css");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const withPlugins = require("next-compose-plugins");
-const webpack = require('webpack')
+const webpack = require("webpack");
 const path = require("path");
 const Dotenv = require("dotenv-webpack");
 
@@ -39,4 +39,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withPlugins([[withCSS], [withBundleAnalyzer]], nextConfig);
+module.exports = withPlugins([[withBundleAnalyzer]], nextConfig);
