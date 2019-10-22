@@ -37,9 +37,12 @@ class MuiVirtualizedTable extends React.PureComponent {
   getRowClassName = ({ index }) => {
     const { classes, onRowClick } = this.props;
 
-    return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != null
-    });
+    const res = clsx(
+      classes.tableRow,
+      classes.flexContainer,
+      index !== -1 && onRowClick != null ? classes.tableRowHover : null
+    );
+    return res;
   };
 
   cellRenderer = ({ cellData, columnIndex }) => {
@@ -144,7 +147,6 @@ MuiVirtualizedTable.propTypes = {
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 export default function ReactVirtualizedTable({ data }) {
-  // const rows = data;
   const rows = data;
   const columns = Object.keys(data[0])
     .filter(s => s !== "id")
@@ -162,6 +164,7 @@ export default function ReactVirtualizedTable({ data }) {
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         columns={columns}
+        onRowClick={(e)=>{console.log(e.rowData)}}
       />
     </Paper>
   );

@@ -27,23 +27,6 @@ const Home = ({ data }) => {
     setTableData(tableData[year]);
   };
 
-  // const SideNav = () => (
-  //   <Col classes="s3">
-  //     <Toolbar handleAddClick={handleAddClick} />
-  //   </Col>
-  // );
-
-  // const MainPanel = () => (
-  //   <Col classes="s9">
-  //     <Years
-  //       years={Object.keys(tableData)}
-  //       active={year}
-  //       handleClick={clickYearHandle}
-  //     />
-  //     <Table data={tableData[year]} />
-  //   </Col>
-  // );
-
   const SideNav = () => (
     <Grid item sm={3}>
       <Toolbar />
