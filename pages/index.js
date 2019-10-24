@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import fetch from "isomorphic-unfetch";
-import Table from "../components/newTable";
+import Table from "../components/table";
 import Years from "../components/years";
-import Row from "../components/row";
-import Col from "../components/col";
 import Toolbar from "../components/toolbar";
 
 const Home = ({ data }) => {
