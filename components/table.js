@@ -24,7 +24,8 @@ const styles = theme => ({
     flex: 1
   },
   noClick: {
-    cursor: "initial"
+    cursor: "initial",
+    color: theme.palette.primary.main
   }
 });
 
@@ -146,6 +147,16 @@ MuiVirtualizedTable.propTypes = {
 
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
+const columnWidth = s => {
+  if (s === "Adults" || s == "Children") {
+    return 100;
+  } else if (s === "Date" || s === "Delivered By" || s === "Charge") {
+    return 150;
+  } else {
+    return 200;
+  }
+};
+
 export default function ReactVirtualizedTable({ data }) {
   const rows = data;
   const columns = Object.keys(data[0])
@@ -153,7 +164,7 @@ export default function ReactVirtualizedTable({ data }) {
     .map(s => {
       const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
       return {
-        width: 200,
+        width: columnWidth(s),
         label: capitalize(s),
         dataKey: s
       };
@@ -164,8 +175,10 @@ export default function ReactVirtualizedTable({ data }) {
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         columns={columns}
-        onRowClick={(e)=>{console.log(e.rowData)}}
-        scrollToIndex={data.length-1}
+        onRowClick={e => {
+          console.log(e.rowData);
+        }}
+        scrollToIndex={data.length - 1}
       />
     </Paper>
   );

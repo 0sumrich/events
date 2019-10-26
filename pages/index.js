@@ -26,13 +26,13 @@ const Home = ({ data }) => {
   };
 
   const SideNav = () => (
-    <Grid item sm={3}>
+    <Grid item sm={2}>
       <Toolbar />
     </Grid>
   );
 
   const MainPanel = () => (
-    <Grid item sm={9}>
+    <Grid item sm={10}>
       <Table data={data[year]}/>
     </Grid>
   );
