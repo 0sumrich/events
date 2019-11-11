@@ -23,9 +23,12 @@ const styles = theme => ({
   tableCell: {
     flex: 1
   },
-  noClick: {
-    cursor: "initial",
-    color: theme.palette.primary.main
+  header: {
+    cursor: "pointer",
+    color: theme.palette.primary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.grey[200]
+    }
   }
 });
 
@@ -48,11 +51,12 @@ class MuiVirtualizedTable extends React.PureComponent {
 
   cellRenderer = ({ cellData, columnIndex }) => {
     const { columns, classes, rowHeight, onRowClick } = this.props;
+
     return (
       <TableCell
         component="div"
         className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null
+          [classes.header]: onRowClick == null
         })}
         variant="body"
         style={{ height: rowHeight }}
@@ -76,7 +80,7 @@ class MuiVirtualizedTable extends React.PureComponent {
         className={clsx(
           classes.tableCell,
           classes.flexContainer,
-          classes.noClick
+          classes.header
         )}
         variant="head"
         style={{ height: headerHeight }}
