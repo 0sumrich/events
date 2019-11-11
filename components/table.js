@@ -181,6 +181,7 @@ export default function ReactVirtualizedTable({ data }) {
         onRowClick={e => {
           console.log(e.rowData);
         }}
+        onHeaderClick={e => console.log(e)}
         scrollToIndex={data.length - 1}
       />
     </Paper>
