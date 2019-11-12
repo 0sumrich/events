@@ -169,7 +169,8 @@ export default function ReactVirtualizedTable({ data }) {
       return {
         width: columnWidth(s),
         label: capitalize(s),
-        dataKey: s
+        dataKey: s,
+        columnData: { data: [...new Set(data.map(o => o[s]))] }
       };
     });
   return (
