@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import fetch from "isomorphic-unfetch";
-import Table from "../components/table";
+import Table from "../components/table/reactVirtualizedTable";
 import Years from "../components/years";
 import Toolbar from "../components/toolbar";
 
