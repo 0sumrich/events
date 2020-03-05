@@ -30,8 +30,9 @@ export default function ReactVirtualizedTable({ data }) {
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         columns={columns}
-        onRowClick={e => {
-          console.log(e.rowData);
+        onRowClick={({rowData, index}) => {
+          console.log(rowData);
+          console.log(`index: ${index}`)
         }}
         onHeaderClick={e => console.log(e)}
         scrollToIndex={data.length - 1}

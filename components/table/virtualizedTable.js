@@ -6,6 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import { AutoSizer, Column, Table } from "react-virtualized";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import FilterListIcon from "@material-ui/icons/FilterList";
 import styles from "./styles";
 
 class MuiVirtualizedTable extends React.PureComponent {
@@ -16,11 +17,12 @@ class MuiVirtualizedTable extends React.PureComponent {
 
   getRowClassName = ({ index }) => {
     const { classes, onRowClick } = this.props;
-
     const res = clsx(
       classes.tableRow,
       classes.flexContainer,
-      index !== -1 && onRowClick != null ? classes.tableRowHover : null
+      index !== -1 && onRowClick != null ? classes.tableRowHover : null,
+      //needed?
+      index !== -1 && onRowClick != null ? `index-${index}` : null
     );
     return res;
   };
@@ -62,7 +64,7 @@ class MuiVirtualizedTable extends React.PureComponent {
         align={columns[columnIndex].numeric || false ? "right" : "left"}
       >
         <span>{label}</span>
-        <ArrowDropDownIcon />
+        <FilterListIcon />
       </TableCell>
     );
   };
