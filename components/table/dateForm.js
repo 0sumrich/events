@@ -47,14 +47,16 @@ function DatePickerForm({col}) {
 				placeholder={moment.min(dates)}
 				onChange={date => handleDateChange(date)}
 				minDate={moment.min(dates)}
-				format="MM/dd/yyyy"
+				format="DD/MM/YYYY"
+				label='start date'
 			/>
 
 			<KeyboardDatePicker
 				placeholder={moment()}
 				value={selectedDate}
 				onChange={date => handleDateChange(date)}
-				format="MM/dd/yyyy"
+				format="DD/MM/YYYY"
+				label='end date'
 			/>
 		</MuiPickersUtilsProvider>
 	);
