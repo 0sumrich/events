@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import fetch from "isomorphic-unfetch";
-import Table from "../components/table/reactVirtualizedTable";
+import TableWrapper from "../components/table/tableWrapper";
 import Years from "../components/years";
 import Toolbar from "../components/toolbar";
 
@@ -33,7 +33,7 @@ const Home = ({ data }) => {
 
   const MainPanel = () => (
     <Grid item sm={10}>
-      <Table data={data[year]}/>
+      <TableWrapper data={data[year]}/>
     </Grid>
   );
 
