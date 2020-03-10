@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Typography from '@material-ui/core/Typography';
 import VirtualizedTable from "./virtualizedTable";
 import Filter from "./Filter";
+import * as moment from "moment";
 
 const columnWidth = s => {
   if (s === "Adults" || s == "Children") {
@@ -31,10 +33,40 @@ const getColumns = data =>
 //   setAnchorEl(anchorEl ? null : event.currentTarget);
 // };
 
+function filterer(arr, filters) {
+  const { dates } = filters;
+  const datesFilter = date => {
+    const { start, end } = dates;
+    if (dates.start.isValid() && dates.end.isValid()) {
+      return date.isSameOrAfter(start) && date.isSameOrBefore(end);
+    } else {
+      return true;
+    }
+  };
+  const res = arr.filter(o => datesFilter(moment(o.Date)));
+  //you can't return an empty array or it will crash
+  // instead return an 1 length array with undefined
+  if(res.length<1){
+    const o = arr[0]
+    const keys = Object.keys(o)
+    keys.forEach(key => {
+      o[key]=undefined
+    })
+    return [o]
+  }
+  return res
+}
+
 function TableWrapper({ data }) {
-  const [rows, setRows] = useState(data);
+  const dates = data.map(o => moment(o.Date));
+  const [dateStart, setDateStart] = useState(moment.min(dates));
+  const [dateEnd, setDateEnd] = useState(moment.max(dates));
+  // const [rows, setRows] = useState(data);
   const [anchorEl, setAnchorEl] = useState(null);
   const [columnData, setColumnData] = useState(null);
+  const rows = filterer(data, {
+    dates: { start: dateStart, end: dateEnd }
+  });
 
   const handleHeaderClick = e => {
     const target =
@@ -43,6 +75,17 @@ function TableWrapper({ data }) {
     setAnchorEl(target);
     setColumnData(targetCol);
   };
+
+  // if (rows.length < 1) {
+  //   return (
+  //     <Paper style={{ height: "100vh", width: "100%" }}>
+  //       <Typography variant="subtitle1" gutterBottom>
+  //         subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  //         Quos blanditiis tenetur
+  //       </Typography>
+  //     </Paper>
+  //   );
+  // }
 
   return (
     <Paper style={{ height: "100vh", width: "100%" }}>
@@ -63,7 +106,19 @@ function TableWrapper({ data }) {
         anchorEl={anchorEl}
         columnData={columnData}
         rows={rows}
-        handleSubmit={() => console.log('hanndle form submit')}
+        handleSubmit={() => console.log("hanndle form submit")}
+        handleChange={{
+          dates: {
+            start: date => setDateStart(date),
+            end: date => setDateEnd(date)
+          }
+        }}
+        filter={{
+          dates: {
+            start: dateStart,
+            end: dateEnd
+          }
+        }}
       />
     </Paper>
   );

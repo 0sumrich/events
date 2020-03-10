@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function Filter({ id, anchorEl, columnData, handleSubmit }) {
+function Filter({ id, anchorEl, columnData, handleSubmit, handleChange, filter }) {
 	const classes = useStyles();
 	return (
 		<Popover id={id} open={Boolean(anchorEl)} anchorEl={anchorEl}>
@@ -19,6 +19,8 @@ function Filter({ id, anchorEl, columnData, handleSubmit }) {
 				<FilterForm
 					columnData={columnData}
 					handleSubmit={handleSubmit}
+					handleChange={handleChange}
+					filter={filter}
 				/>
 			</div>
 		</Popover>
@@ -29,7 +31,9 @@ Filter.propTypes = {
 	id: PropTypes.string,
 	anchorEl: PropTypes.object,
 	columnData: PropTypes.object,
-	handleSubmit: PropTypes.func
+	handleSubmit: PropTypes.func,
+	handleChange: PropTypes.object,
+	filter: PropTypes.object
 };
 
 export default Filter;

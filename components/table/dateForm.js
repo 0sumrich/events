@@ -4,9 +4,9 @@ import {
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider
 } from "@material-ui/pickers";
-import * as moment from 'moment';
+import * as moment from "moment";
 
-moment.locale("en")
+moment.locale("en");
 
 // function KeyboardDatePickerExample(props) {
 //   const [selectedDate, handleDateChange] = useState(new Date());
@@ -34,29 +34,25 @@ moment.locale("en")
 
 // export default KeyboardDatePickerExample;
 
-function DatePickerForm({col}) {
-	const dates = col.map(o => moment(o))
-
-	const [selectedDate, handleDateChange] = useState(moment.min(dates));
-
+function DatePickerForm({ col, handleChange, dates }) {
+	const {start, end} = dates;	
 	return (
 		<MuiPickersUtilsProvider utils={MomentUtils}>
 			<KeyboardDatePicker
 				clearable
-				value={selectedDate}
-				placeholder={moment.min(dates)}
-				onChange={date => handleDateChange(date)}
-				minDate={moment.min(dates)}
+				value={start}
+				placeholder={start.format()}
+				onChange={date => handleChange.start(date)}
 				format="DD/MM/YYYY"
-				label='start date'
+				label="start date"
 			/>
 
 			<KeyboardDatePicker
-				placeholder={moment()}
-				value={selectedDate}
-				onChange={date => handleDateChange(date)}
+				placeholder={end.format()}
+				value={end}
+				onChange={date => handleChange.end(date)}
 				format="DD/MM/YYYY"
-				label='end date'
+				label="end date"
 			/>
 		</MuiPickersUtilsProvider>
 	);
