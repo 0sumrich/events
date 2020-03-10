@@ -76,17 +76,6 @@ function TableWrapper({ data }) {
     setColumnData(targetCol);
   };
 
-  // if (rows.length < 1) {
-  //   return (
-  //     <Paper style={{ height: "100vh", width: "100%" }}>
-  //       <Typography variant="subtitle1" gutterBottom>
-  //         subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-  //         Quos blanditiis tenetur
-  //       </Typography>
-  //     </Paper>
-  //   );
-  // }
-
   return (
     <Paper style={{ height: "100vh", width: "100%" }}>
       <VirtualizedTable
@@ -106,7 +95,10 @@ function TableWrapper({ data }) {
         anchorEl={anchorEl}
         columnData={columnData}
         rows={rows}
-        handleSubmit={() => console.log("hanndle form submit")}
+        handleSubmit={e => {
+          e.preventDefault()
+          setAnchorEl(null);
+        }}
         handleChange={{
           dates: {
             start: date => setDateStart(date),

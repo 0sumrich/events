@@ -34,26 +34,34 @@ moment.locale("en");
 
 // export default KeyboardDatePickerExample;
 
-function DatePickerForm({ col, handleChange, dates }) {
-	const {start, end} = dates;	
+function DatePickerForm({ col, handleChange, dates, handleSubmit }) {
+	const { start, end } = dates;
 	return (
 		<MuiPickersUtilsProvider utils={MomentUtils}>
-			<KeyboardDatePicker
-				clearable
-				value={start}
-				placeholder={start.format()}
-				onChange={date => handleChange.start(date)}
-				format="DD/MM/YYYY"
-				label="start date"
-			/>
+			<form onSubmit={handleSubmit}>
+				<KeyboardDatePicker
+					clearable
+					value={start}
+					placeholder={start.format()}
+					onChange={date => handleChange.start(date)}
+					format="DD/MM/YYYY"
+					label="start date"
+					maxDate={end}
+				/>
 
-			<KeyboardDatePicker
-				placeholder={end.format()}
-				value={end}
-				onChange={date => handleChange.end(date)}
-				format="DD/MM/YYYY"
-				label="end date"
-			/>
+				<KeyboardDatePicker
+					clearable
+					placeholder={end.format()}
+					value={end}
+					onChange={date => handleChange.end(date)}
+					format="DD/MM/YYYY"
+					label="end date"
+					minDate={start}
+				/>
+				<button type="submit" style={{ display: "none" }}>
+					submit
+				</button>
+			</form>
 		</MuiPickersUtilsProvider>
 	);
 }
