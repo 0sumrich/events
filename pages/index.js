@@ -2,21 +2,11 @@ import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import fetch from "isomorphic-unfetch";
 import TableWrapper from "../components/table/tableWrapper";
-// import Years from "../components/years";
 import Toolbar from "../components/toolbar";
 
 const Home = ({ data }) => {
-  
-    const handleAddClick = () => {
+  const handleAddClick = () => {
     console.log("add click");
-    const o = tableData[year][tableData[year].length - 1];
-    const keys = Object.keys(o);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      o[key] = "";
-    }
-    tableData[year].push(o);
-    setTableData(tableData[year]);
   };
 
   const SideNav = () => (
@@ -27,7 +17,7 @@ const Home = ({ data }) => {
 
   const MainPanel = () => (
     <Grid item sm={10}>
-      <TableWrapper data={data}/>
+      <TableWrapper data={data} />
     </Grid>
   );
 
