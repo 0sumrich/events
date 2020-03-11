@@ -6,7 +6,7 @@ import FilterForm from "./FilterForm";
 const useStyles = makeStyles(theme => ({
 	paper: {
 		border: "1px solid",
-		padding: theme.spacing(1),
+		padding: theme.spacing(2),
 		backgroundColor: theme.palette.background.paper
 	}
 }));

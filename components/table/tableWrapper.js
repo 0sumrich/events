@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import VirtualizedTable from "./virtualizedTable";
 import Filter from "./Filter";
 import * as moment from "moment";
@@ -36,8 +36,8 @@ const getColumns = data =>
 function filterer(arr, filters) {
   const { dates } = filters;
   const datesFilter = date => {
-    const { start, end } = dates;
-    if (dates.start.isValid() && dates.end.isValid()) {
+    let { start, end } = dates;
+    if (start.isValid() && end.isValid()) {
       return date.isSameOrAfter(start) && date.isSameOrBefore(end);
     } else {
       return true;
@@ -46,15 +46,15 @@ function filterer(arr, filters) {
   const res = arr.filter(o => datesFilter(moment(o.Date)));
   //you can't return an empty array or it will crash
   // instead return an 1 length array with undefined
-  if(res.length<1){
-    const o = arr[0]
-    const keys = Object.keys(o)
+  if (res.length < 1) {
+    const o = arr[0];
+    const keys = Object.keys(o);
     keys.forEach(key => {
-      o[key]=undefined
-    })
-    return [o]
+      o[key] = undefined;
+    });
+    return [o];
   }
-  return res
+  return res;
 }
 
 function TableWrapper({ data }) {
@@ -96,13 +96,17 @@ function TableWrapper({ data }) {
         columnData={columnData}
         rows={rows}
         handleSubmit={e => {
-          e.preventDefault()
+          e.preventDefault();
           setAnchorEl(null);
         }}
         handleChange={{
           dates: {
-            start: date => setDateStart(date),
-            end: date => setDateEnd(date)
+            start: date => {
+              if (date) setDateStart(date);
+            },
+            end: date => {
+              if (date) setDateEnd(date);
+            }
           }
         }}
         filter={{

@@ -17,7 +17,7 @@ export default theme => ({
   },
   header: {
     cursor: "pointer",
-    color: theme.palette.primary.main,
+    color: theme.palette.info.main,
     "&:hover": {
       backgroundColor: theme.palette.grey[200]
     }
