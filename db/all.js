@@ -11,16 +11,6 @@ async function getAll() {
   const db = await Database.open("./.data/main.db");
   const rows = await db.all(query);
   let res = {};
-  // rows.forEach(row => {
-  //   const takings = row.Charge == 0 ? null : gpb(row.Charge);
-  //   row.Charge = takings;
-  //   const year = moment(row.Date).year();
-  //   if (res.hasOwnProperty(year)) {
-  //     res[year].push(row);
-  //   } else {
-  //     res[year] = [row];
-  //   }
-  // });
   rows.forEach(row => {
     const takings = row.Charge == 0 ? null : gpb(row.Charge);
     row.Charge = takings;
