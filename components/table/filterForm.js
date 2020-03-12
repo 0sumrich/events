@@ -1,4 +1,3 @@
-import { makeStyles } from "@material-ui/core/styles";
 import DatePickerForm from "./DateForm";
 
 function FilterForm({ columnData, handleSubmit, handleChange, filter }) {
@@ -7,12 +6,12 @@ function FilterForm({ columnData, handleSubmit, handleChange, filter }) {
 
 	if (dataKey === "Date") {
 		return (
-			<DatePickerForm
-				col={col.data}
-				handleChange={handleChange.dates}
-				dates={filter.dates}
-				handleSubmit={handleSubmit}
-			/>
+				<DatePickerForm
+					col={col.data}
+					handleChange={handleChange.dates}
+					dates={filter.dates}
+					handleSubmit={handleSubmit}
+				/>
 		);
 	}
 	return dataKey;
