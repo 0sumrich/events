@@ -17,7 +17,11 @@ const useStyles = makeStyles(theme => ({
 		flexGrow: 1
 	},
 	btn: {
-		padding: theme.spacing(1)
+		// padding: theme.spacing(1),
+		'& svg': {
+			height: '0.75em',
+			width: '0.75em'
+		}
 	}
 }));
 

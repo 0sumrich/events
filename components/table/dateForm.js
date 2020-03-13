@@ -15,7 +15,8 @@ moment.locale("en");
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		textAlign: 'center'
+		textAlign: 'center',
+		padding: theme.spacing(1)
 	}
 }));
 
