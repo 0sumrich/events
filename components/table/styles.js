@@ -17,9 +17,10 @@ export default theme => ({
   },
   header: {
     cursor: "pointer",
-    color: theme.palette.info.main,
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.primary.contrastText,
     "&:hover": {
-      backgroundColor: theme.palette.grey[200]
+      backgroundColor: theme.palette.primary.main
     }
   }
 });
