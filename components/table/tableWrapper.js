@@ -113,7 +113,8 @@ function TableWrapper({ data }) {
           dates: {
             start: dateStart,
             end: dateEnd
-          }
+          },
+          libraries: e => console.log(e)
         }}
       />
     </Paper>
