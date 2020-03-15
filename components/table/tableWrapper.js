@@ -107,14 +107,16 @@ function TableWrapper({ data }) {
             end: date => {
               if (date) setDateEnd(date);
             }
+          },
+          libraries: (event, values) => {
+            console.log(values);
           }
         }}
         filter={{
           dates: {
             start: dateStart,
             end: dateEnd
-          },
-          libraries: e => console.log(e)
+          }
         }}
       />
     </Paper>
