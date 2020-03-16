@@ -1,3 +1,4 @@
+import { useState } from "react";
 import MomentUtils from "@date-io/moment";
 import {
 	KeyboardDatePicker,
@@ -11,36 +12,47 @@ moment.locale("en");
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		textAlign: 'center',
+		textAlign: "center",
 		padding: theme.spacing(1)
 	}
 }));
 
-function DatePickerForm({ col, handleChange, dates, handleSubmit }) {
+function DatePickerForm({ col, handleChange, handleSubmit }) {
 	const classes = useStyles();
-	const { start, end } = dates;
+	// const { start, end } = dates;
+	const dates = col.map(x => moment(x));
+	const min = moment.min(dates)
+	const max = moment.max(dates)
+	const [startDate, setStartDate] = useState(min);
+	const [endDate, setEndDate] = useState(max);
 	return (
 		<MuiPickersUtilsProvider utils={MomentUtils}>
 			<Grid item xs={6} className={classes.root}>
 				<KeyboardDatePicker
 					clearable
-					value={start}
-					placeholder={start.format()}
-					onChange={date => handleChange.start(date)}
+					value={startDate}
+					placeholder={min.format()}
+					onChange={date => {
+						handleChange.start(date);
+						setStartDate(date);
+					}}
 					format="DD/MM/YYYY"
 					label="start date"
-					maxDate={end}
+					maxDate={endDate}
 				/>
 			</Grid>
 			<Grid item xs={6} className={classes.root}>
 				<KeyboardDatePicker
 					clearable
-					placeholder={end.format()}
-					value={end}
-					onChange={date => handleChange.end(date)}
+					placeholder={max.format()}
+					value={endDate}
+					onChange={date => {
+						handleChange.end(date);
+						setEndDate(date);
+					}}
 					format="DD/MM/YYYY"
 					label="end date"
-					minDate={start}
+					minDate={startDate}
 				/>
 			</Grid>
 		</MuiPickersUtilsProvider>
