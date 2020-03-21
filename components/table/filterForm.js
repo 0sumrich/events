@@ -4,6 +4,7 @@ import LibForm from "./libForm";
 function FilterForm({ columnData, handleSubmit, handleChange, filter }) {
 	const col = columnData.columnData;
 	const dataKey = columnData.dataKey;
+
 	if (dataKey === "Date") {
 		return (
 			<DatePickerForm

@@ -43,7 +43,7 @@ function filterer(arr, filters) {
       return true;
     }
   };
-  const res = libarr.filter(o => datesFilter(moment(o.Date)));
+  const res = arr.filter(o => datesFilter(moment(o.Date)));
   //you can't return an empty array or it will crash
   // instead return an 1 length array with undefined
   if (res.length < 1) {
@@ -61,15 +61,12 @@ function TableWrapper({ data }) {
   const dates = data.map(o => moment(o.Date));
   const [dateStart, setDateStart] = useState(moment.min(dates));
   const [dateEnd, setDateEnd] = useState(moment.max(dates));
-  const [libraries, setLibraries] = useState([]);
   // const [rows, setRows] = useState(data);
   const [anchorEl, setAnchorEl] = useState(null);
   const [columnData, setColumnData] = useState(null);
-  // const rows = filterer(data, {
-  //   dates: { start: dateStart, end: dateEnd },
-  //   libraries: libraries
-  // });
-  const [rows, setRows] = useState(data);
+  const rows = filterer(data, {
+    dates: { start: dateStart, end: dateEnd }
+  });
 
   const handleHeaderClick = e => {
     const target =
@@ -105,41 +102,19 @@ function TableWrapper({ data }) {
         handleChange={{
           dates: {
             start: date => {
-              if (date && date.isValid()) {
-                const newRows = rows.filter(o =>
-                  moment(o.Date).isSameOrAfter(date)
-                );
-                setRows(newRows);
-                setAnchorEl(null);
-              } else {
-                const newRows = data.filter(o =>
-                  moment(o.Date).isBetween(
-                    moment.min(dates, moment.max(rows.map(o => o.Date)))
-                  )
-                );
-                setRows(newRows);
-                setAnchorEl(null);
-              }
+              if (date) setDateStart(date);
             },
             end: date => {
-              if (date && date.isValid()) {
-                const newRows = rows.filter(o =>
-                  moment(o.Date).isSameOrBefore(date)
-                );
-                setRows(newRows);
-                setAnchorEl(null);
-              }
+              if (date) setDateEnd(date);
             }
-          },
-          libraries: (event, values) => {
-            console.log(values);
           }
         }}
         filter={{
           dates: {
             start: dateStart,
             end: dateEnd
-          }
+          },
+          libraries: e => console.log(e)
         }}
       />
     </Paper>
