@@ -102,10 +102,18 @@ function TableWrapper({ data }) {
         handleChange={{
           dates: {
             start: date => {
-              if (date) setDateStart(date);
+              if (date) {
+                setDateStart(date)
+              } else {
+                setDateStart(moment.min(dates))
+              }
             },
             end: date => {
-              if (date) setDateEnd(date);
+              if (date) {
+                setDateEnd(date)
+              } else {
+                setDateEnd(moment.max(dates))
+              }
             }
           }
         }}
